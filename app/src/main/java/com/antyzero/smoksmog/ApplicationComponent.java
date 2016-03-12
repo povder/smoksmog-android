@@ -13,6 +13,7 @@ import com.antyzero.smoksmog.ui.screen.start.item.AirQualityViewHolder;
 import com.antyzero.smoksmog.ui.screen.start.item.ParticulateViewHolder;
 import com.antyzero.smoksmog.ui.screen.start.model.StationIdList;
 import com.antyzero.smoksmog.ui.widget.StationWidget;
+import com.antyzero.smoksmog.ui.widget.WidgetModule;
 
 import javax.inject.Singleton;
 
@@ -27,7 +28,8 @@ import dagger.Component;
                 FabricModule.class,
                 SettingsModule.class,
                 EventBusModule.class,
-                TimeModule.class
+                TimeModule.class,
+                WidgetModule.class
         }
 )
 public interface ApplicationComponent {

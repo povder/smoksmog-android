@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.antyzero.smoksmog.R;
+import com.antyzero.smoksmog.SmokSmogApplication;
 import com.antyzero.smoksmog.ui.BaseDragonActivity;
 
 /**
@@ -26,7 +27,7 @@ public class StationWidgetConfigureActivity extends BaseDragonActivity {
 
             // When the button is clicked, store the string locally
             String widgetText = mAppWidgetText.getText().toString();
-            saveTitlePref( context, mAppWidgetId, widgetText );
+            // >>> saveTitlePref( context, mAppWidgetId, widgetText );
 
             // It is the responsibility of the configuration activity to update the app widget
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance( context );
@@ -39,13 +40,6 @@ public class StationWidgetConfigureActivity extends BaseDragonActivity {
             finish();
         }
     };
-
-    // Write the prefix to the SharedPreferences object for this widget
-    static void saveTitlePref( Context context, int appWidgetId, String text ) {
-        SharedPreferences.Editor prefs = context.getSharedPreferences( PREFS_NAME, 0 ).edit();
-        prefs.putString( PREF_PREFIX_KEY + appWidgetId, text );
-        prefs.apply();
-    }
 
     // Read the prefix from the SharedPreferences object for this widget.
     // If there is no preference saved, get the default from a resource
@@ -68,6 +62,7 @@ public class StationWidgetConfigureActivity extends BaseDragonActivity {
     @Override
     public void onCreate( Bundle icicle ) {
         super.onCreate( icicle );
+        SmokSmogApplication.get( this ).getAppComponent().inject( this );
 
         // Set the result to CANCELED.  This will cause the widget host to cancel
         // out of the widget placement if the user presses the back button.

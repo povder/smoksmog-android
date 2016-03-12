@@ -9,23 +9,16 @@ import android.widget.RemoteViews;
 import com.antyzero.smoksmog.R;
 import com.antyzero.smoksmog.SmokSmogApplication;
 
+import javax.inject.Inject;
+
 /**
  * Implementation of App Widget functionality.
  * App Widget Configuration implemented in {@link StationWidgetConfigureActivity StationWidgetConfigureActivity}
  */
 public class StationWidget extends AppWidgetProvider {
 
-    static void updateAppWidget( Context context, AppWidgetManager appWidgetManager,
-                                 int appWidgetId ) {
-
-        CharSequence widgetText = StationWidgetConfigureActivity.loadTitlePref( context, appWidgetId );
-        // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.widget_station );
-        views.setTextViewText( R.id.appwidget_text, widgetText );
-
-        // Instruct the widget manager to update the widget
-        appWidgetManager.updateAppWidget( appWidgetId, views );
-    }
+    @Inject
+    StationWidgetManager stationWidgetManager;
 
     @Override
     public void onReceive( Context context, Intent intent ) {
@@ -36,14 +29,14 @@ public class StationWidget extends AppWidgetProvider {
     @Override
     public void onUpdate( Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds ) {
         for ( int appWidgetId : appWidgetIds ) {
-            updateAppWidget( context, appWidgetManager, appWidgetId );
+            stationWidgetManager.updateWidget( appWidgetManager, appWidgetId );
         }
     }
 
     @Override
     public void onDeleted( Context context, int[] appWidgetIds ) {
         for ( int appWidgetId : appWidgetIds ) {
-            StationWidgetConfigureActivity.deleteTitlePref( context, appWidgetId );
+            stationWidgetManager.deleteWidget( appWidgetId );
         }
     }
 
