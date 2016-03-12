@@ -37,10 +37,10 @@ public class StationWidgetManager {
 
     public void updateWidget( int appWidgetId ) {
 
-        CharSequence widgetText = StationWidgetConfigureActivity.loadTitlePref( context, appWidgetId );
+        long stationId = getWidgetStationId( appWidgetId );
 
         RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.widget_station );
-        views.setTextViewText( R.id.appwidget_text, widgetText );
+        views.setTextViewText( R.id.appwidget_text, "" + stationId );
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget( appWidgetId, views );

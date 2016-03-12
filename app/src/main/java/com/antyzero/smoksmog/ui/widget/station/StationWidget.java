@@ -27,7 +27,7 @@ public class StationWidget extends AppWidgetProvider {
     @Override
     public void onUpdate( Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds ) {
         for ( int appWidgetId : appWidgetIds ) {
-            stationWidgetManager.updateWidget( appWidgetManager, appWidgetId );
+            stationWidgetManager.updateWidget( appWidgetId );
         }
     }
 

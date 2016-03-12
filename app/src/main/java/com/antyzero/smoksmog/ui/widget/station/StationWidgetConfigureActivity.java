@@ -3,30 +3,48 @@ package com.antyzero.smoksmog.ui.widget.station;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.antyzero.smoksmog.R;
 import com.antyzero.smoksmog.SmokSmogApplication;
+import com.antyzero.smoksmog.logger.Logger;
 import com.antyzero.smoksmog.ui.BaseDragonActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.Bind;
 import butterknife.OnClick;
+import pl.malopolska.smoksmog.SmokSmog;
+import pl.malopolska.smoksmog.model.Station;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * The configuration screen for the {@link StationWidget StationWidget} AppWidget.
  */
 public class StationWidgetConfigureActivity extends BaseDragonActivity {
 
-    private static final String PREFS_NAME = "com.antyzero.smoksmog.ui.widget.station.StationWidget";
-    private static final String PREF_PREFIX_KEY = "appwidget_";
+    private static final String TAG = StationWidgetConfigureActivity.class.getSimpleName();
 
     @Inject
     StationWidgetManager stationWidgetManager;
+    @Inject
+    SmokSmog smokSmog;
+    @Inject
+    Logger logger;
+
+    @Bind( R.id.recyclerView )
+    RecyclerView recyclerView;
+
+    private final List<Station> stationList = new ArrayList<>();
+    private final StationAdapter adapter = new StationAdapter( stationList );
+    ;
 
     int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
-
-    EditText mAppWidgetText;
 
     @Override
     public void onCreate( Bundle icicle ) {
@@ -34,11 +52,24 @@ public class StationWidgetConfigureActivity extends BaseDragonActivity {
         setContentView( R.layout.activity_configure_widget_station );
         SmokSmogApplication.get( this ).getAppComponent().inject( this );
 
+        recyclerView.setLayoutManager( new LinearLayoutManager( this ) );
+        recyclerView.setAdapter( adapter );
+
+        smokSmog.getApi().stations()
+                .subscribeOn( Schedulers.newThread() )
+                .observeOn( AndroidSchedulers.mainThread() )
+                .subscribe( stations -> {
+                            stationList.clear();
+                            stationList.addAll( stations );
+                        },
+                        throwable -> {
+                            logger.w( TAG, "Problem with station loading", throwable );
+                        },
+                        adapter::notifyDataSetChanged );
+
         // Set the result to CANCELED.  This will cause the widget host to cancel
         // out of the widget placement if the user presses the back button.
         setResult( RESULT_CANCELED );
-
-        mAppWidgetText = ( EditText ) findViewById( R.id.appwidget_text );
 
         // Find the widget id from the intent.
         Intent intent = getIntent();
@@ -54,8 +85,9 @@ public class StationWidgetConfigureActivity extends BaseDragonActivity {
             return;
         }
 
+/*
         mAppWidgetText.setText( String.valueOf(
-                stationWidgetManager.getWidgetStationId( mAppWidgetId ) ) );
+                stationWidgetManager.getWidgetStationId( mAppWidgetId ) ) );*/
     }
 
     @OnClick( R.id.add_button )
