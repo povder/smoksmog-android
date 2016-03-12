@@ -12,6 +12,7 @@ import com.antyzero.smoksmog.ui.screen.ActivityModule;
 import com.antyzero.smoksmog.ui.screen.start.item.AirQualityViewHolder;
 import com.antyzero.smoksmog.ui.screen.start.item.ParticulateViewHolder;
 import com.antyzero.smoksmog.ui.screen.start.model.StationIdList;
+import com.antyzero.smoksmog.ui.widget.StationWidget;
 
 import javax.inject.Singleton;
 
@@ -42,4 +43,6 @@ public interface ApplicationComponent {
     void inject( AboutDialog aboutDialog );
 
     void inject( ParticulateViewHolder particulateViewHolder );
+
+    void inject( StationWidget stationWidget );
 }
