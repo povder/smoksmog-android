@@ -1,12 +1,10 @@
-package com.antyzero.smoksmog.ui.widget;
+package com.antyzero.smoksmog.ui.widget.station;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
-import android.widget.RemoteViews;
 
-import com.antyzero.smoksmog.R;
 import com.antyzero.smoksmog.SmokSmogApplication;
 
 import javax.inject.Inject;

@@ -2,7 +2,7 @@
 <appwidget-provider
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:configure="com.antyzero.smoksmog.ui.widget.StationWidgetConfigureActivity"
+    android:configure="com.antyzero.smoksmog.ui.widget.station.StationWidgetConfigureActivity"
     android:initialLayout="@layout/widget_station"
     android:minHeight="40dp"
     android:minWidth="250dp"

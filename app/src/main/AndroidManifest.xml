@@ -48,7 +48,7 @@
 
         <!-- Station widget -->
 
-        <receiver android:name=".ui.widget.StationWidget">
+        <receiver android:name=".ui.widget.station.StationWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
@@ -58,7 +58,7 @@
                 android:resource="@xml/widget_info_station"/>
         </receiver>
 
-        <activity android:name=".ui.widget.StationWidgetConfigureActivity">
+        <activity android:name=".ui.widget.station.StationWidgetConfigureActivity">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
             </intent-filter>

@@ -1,4 +1,4 @@
-package com.antyzero.smoksmog.ui.widget;
+package com.antyzero.smoksmog.ui.widget.station;
 
 
 import android.appwidget.AppWidgetManager;
@@ -15,21 +15,27 @@ public class StationWidgetManager {
 
     private final SharedPreferences preference;
     private final Context context;
+    private final AppWidgetManager appWidgetManager;
 
     public StationWidgetManager( Context context ) {
         this.context = context;
         preference = context.getSharedPreferences( WIDGET_STATION, Context.MODE_PRIVATE );
+        appWidgetManager = AppWidgetManager.getInstance( context );
     }
 
     public void addWidget( int appWidgetId, long stationId ) {
         preference.edit().putLong( PREFIX + appWidgetId, stationId ).apply();
     }
 
+    public long getWidgetStationId( int appWidgetId ){
+        return preference.getLong( PREFIX + appWidgetId, AppWidgetManager.INVALID_APPWIDGET_ID );
+    }
+
     public void deleteWidget( int appWidgetId ) {
         preference.edit().remove( PREFIX + appWidgetId ).apply();
     }
 
-    public void updateWidget( AppWidgetManager appWidgetManager, int appWidgetId ) {
+    public void updateWidget( int appWidgetId ) {
 
         CharSequence widgetText = StationWidgetConfigureActivity.loadTitlePref( context, appWidgetId );
 

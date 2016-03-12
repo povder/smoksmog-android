@@ -3,6 +3,8 @@ package com.antyzero.smoksmog.ui.widget;
 
 import android.content.Context;
 
+import com.antyzero.smoksmog.ui.widget.station.StationWidgetManager;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
