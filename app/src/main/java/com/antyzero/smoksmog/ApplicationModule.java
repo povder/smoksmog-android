@@ -10,6 +10,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import uk.co.chrisjenx.calligraphy.CalligraphyUtils;
 
 @Singleton
 @Module
@@ -19,6 +21,10 @@ public class ApplicationModule {
 
     public ApplicationModule( Application application ) {
         this.application = application;
+
+        CalligraphyConfig.initDefault( new CalligraphyConfig.Builder()
+                .setDefaultFontPath( "fonts/Lato-Light.ttf" )
+                .build() );
     }
 
     @Provides

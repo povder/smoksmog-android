@@ -1,22 +1,29 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#09C"
-    android:padding="@dimen/widget_margin">
+    android:layout_margin="@dimen/widget_margin"
+    android:background="@color/item_background">
 
     <TextView
-        android:id="@+id/appwidget_text"
+        android:id="@+id/textViewStationName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="8dp"
-        android:background="#09C"
-        android:contentDescription="@string/appwidget_text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:text="@string/appwidget_text"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
-        android:textStyle="bold|italic"/>
+        android:textAppearance="@style/TextAppearance"
+        android:textSize="12sp"
+        tools:ignore="RtlHardcoded"/>
+
+    <TextView
+        android:id="@+id/textViewAirQualityIndex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewStationName"
+        android:text="0,0"
+        android:textAppearance="@style/TextAppearance"
+        android:textSize="20sp"/>
 
 </RelativeLayout>

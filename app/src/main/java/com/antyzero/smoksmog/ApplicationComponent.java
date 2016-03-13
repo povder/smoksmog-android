@@ -15,6 +15,7 @@ import com.antyzero.smoksmog.ui.screen.start.model.StationIdList;
 import com.antyzero.smoksmog.ui.widget.station.StationWidget;
 import com.antyzero.smoksmog.ui.widget.station.StationWidgetConfigureActivity;
 import com.antyzero.smoksmog.ui.widget.WidgetModule;
+import com.antyzero.smoksmog.ui.widget.station.StationWidgetManager;
 
 import javax.inject.Singleton;
 
@@ -50,4 +51,6 @@ public interface ApplicationComponent {
     void inject( StationWidget stationWidget );
 
     void inject( StationWidgetConfigureActivity stationWidgetConfigureActivity );
+
+    void inject( StationWidgetManager stationWidgetManager );
 }

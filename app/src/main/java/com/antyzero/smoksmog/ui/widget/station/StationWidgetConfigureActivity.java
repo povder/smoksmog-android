@@ -94,7 +94,7 @@ public class StationWidgetConfigureActivity extends BaseDragonActivity {
     void onAddStationClick() {
 
         // When the button is clicked, store the string locally
-        stationWidgetManager.addWidget( mAppWidgetId, 0L ); // TODO change station
+        stationWidgetManager.addWidget( mAppWidgetId, 13L ); // TODO change station
 
         stationWidgetManager.updateWidget( mAppWidgetId );
 

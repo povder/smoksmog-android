@@ -33,10 +33,6 @@ public class SmokSmogApplication extends Application {
                 .build();
 
         applicationComponent.inject( this );
-
-        CalligraphyConfig.initDefault( new CalligraphyConfig.Builder()
-                .setDefaultFontPath( "fonts/Lato-Light.ttf" )
-                .build() );
     }
 
     public ApplicationComponent getAppComponent() {
